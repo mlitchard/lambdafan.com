@@ -10,8 +10,8 @@ getRootR :: Handler Html
 getRootR = do
     c <- liftIO $ S.readFile "content/homepage.html"
     let widget = do
-            setTitle "Yesod Web Framework for Haskell"
-            atomLink FeedR "Yesod Web Framework Blog"
+            setTitle "Lambdafan's Web Site"
+            atomLink FeedR "Lambdafan's Blog"
             $(widgetFile "normalize")
             $(widgetFile "homepage")
             $(widgetFile "mobile")

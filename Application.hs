@@ -57,7 +57,7 @@ getApplication conf = do
                 [ "clone"
                 , "-b"
                 , branch
-                , fromMaybe "https://github.com/yesodweb/yesodweb.com-content.git"
+                , fromMaybe "https://github.com/mlitchard/lambdaweb.com-content.git"
                   $ lookup "CONTENT_REPO" env
                 , dir
                 ]

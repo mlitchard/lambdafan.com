@@ -78,14 +78,15 @@ div.headergroup {
     padding-top: 1.3em;
     padding-bottom: 1.3em;
     div.homepage-logo {
-        text-align: center;
-        width: 550px;
-        height: 105px;
-        margin-left: 75px;
+        text-align: left;
+        position: relative;
+        width: 250px;
+        height: 150px;
+        margin-left: 5px;
         div.logo-image {
-          background: url(@{StaticR logo_home2_no_esod_smaller2_png}) no-repeat center center;
+          background: url(@{StaticR logo_hermes_png}) no-repeat left center;
           width: 100%;
-          height: 75px;
+          height: 130px;
         }
         div.logo-text {
             color: #29374e;
@@ -104,9 +105,9 @@ div.headergroup {
        font-size: 0.8em;
        line-height: 1.6em;
        position: absolute;
-       left: 600px;
+       left: 200px;
        top: 0;
-       width: 220px;
+       width: 320px;
        padding: 30px;
     }
 

@@ -9,7 +9,7 @@ $newline never
         <meta charset="UTF-8">
 
         <title>#{pageTitle pc}
-        <meta name="description" content="Yesod is a Haskell web framework for productive development of type-safe, RESTful, high performance web applications.">
+        <meta name="description" content="This my website. There are many like it, but this one is mine.">
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -33,7 +33,7 @@ $newline never
                     <li>
                         <a href=@{BookR BookHomeR}>book
                     <li>
-                        <a href=@{WikiHomeR}>cookbook
+                        <a href=@{WikiHomeR}>projects
                     <li>
                         <a href=@{BlogR}>blog
                     <li>
@@ -44,9 +44,9 @@ $newline never
             <.headergroup>
                 <.homepage-logo>
                   <.logo-image>
-                  <.logo-text>Yesod Web Framework
+                  <.logo-text>Lambdafan's Web Site
                 <.homepage-info>
-                  Yesod is a Haskell web framework for productive development of type-safe, RESTful, high performance web applications.
+                  This is Michael Litchard's Web Site. Enjoy. 
             <aside #announcement>
                 <.tri-left>
                 <.tri-right>
