@@ -31,7 +31,7 @@ nav {
     ul {
         margin: 0;
         padding: 0;
-        text-align: right;
+        text-align: left;
 
         li {
             display: inline;
@@ -87,6 +87,9 @@ div.headergroup {
           background: url(@{StaticR logo_hermes_png}) no-repeat left center;
           width: 100%;
           height: 130px;
+        }
+        a {
+              text-decoration: none;
         }
         div.logo-text {
             color: #29374e;

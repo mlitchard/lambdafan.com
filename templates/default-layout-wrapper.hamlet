@@ -9,7 +9,7 @@ $newline never
         <meta charset="UTF-8">
 
         <title>#{pageTitle pc}
-        <meta name="description" content="Yesod is a Haskell web framework for productive development of type-safe, RESTful, high performance web applications.">
+        <meta name="description" content="Lambdafan's Web Site">
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
