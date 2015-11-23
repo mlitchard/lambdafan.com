@@ -4,7 +4,6 @@ module Application
     ( getApplication
     ) where
 
-import           Book.Routes
 import           ClassyPrelude                        (handleAny)
 import           Control.Concurrent                   (forkIO, threadDelay)
 import           Control.Monad                        (forM_, unless, void, forever)
@@ -29,13 +28,10 @@ import           Yesod.Static                         (Static (Static))
 
 -- Import all relevant handler modules here.
 import           Handler.Blog
-import           Handler.Book
 import           Handler.Page
 import           Handler.Root
 import           Handler.Wiki
 
-instance YesodSubDispatch BookSub (HandlerT YesodWeb IO) where
-    yesodSubDispatch = $(mkYesodSubDispatch resourcesBookSub)
 
 -- This line actually creates our YesodSite instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see
@@ -76,20 +72,13 @@ getApplication conf = do
                 return $ error $ "Invalid posts.yaml: " ++ show e
             Right b -> return b
     iblog <- newIORef blog
-    booksub12 <- mkBookSub "Yesod Web Framework Book- Version 1.2" "Note: You are looking at version 1.2 of the book, which is one version behind" $ F.decodeString dir12
-    booksub11 <- mkBookSub "Yesod Web Framework Book- Version 1.1" "Note: You are looking at version 1.1 of the book, which is two versions behind" $ F.decodeString dir11
-    booksub14 <- mkBookSub "Yesod Web Framework Book- Version 1.4" "" $ F.decodeString dir14
     iauthors <- loadAuthors >>= newIORef
-
     let foundation = YesodWeb
             { settings = conf
             , getStatic = s
             , getAssets = assets
             , ywBlog = iblog
             , ywAuthors = iauthors
-            , getBook12 = booksub12
-            , getBook11 = booksub11
-            , getBook14 = booksub14
             }
     app <- toWaiAppPlain foundation
     logWare <- mkLogWare
@@ -109,20 +98,6 @@ getApplication conf = do
         { outputFormat = Apache FromHeader
         }
 
-mkBookSub :: Html -> Text -> F.FilePath -> IO BookSub
-mkBookSub title warning root' = do
-    Just branch <- return $ lookup (F.encodeString root') branches
-    let root = root' F.</> "book"
-    ibook <- newIORef $ error "Still loading"
-    _ <- forkIO $ loadBook root >>= writeIORef ibook
-    return BookSub
-        { bsRoot = root
-        , bsBook = ibook
-        , bsReload = loadBook root >>= writeIORef ibook
-        , bsTitle = title
-        , bsWarning = if T.null warning then Nothing else Just (toHtml warning)
-        , bsBranch = T.pack branch
-        }
 
 dir12, dir11, dir14 :: FilePath
 dir12 = "content-1.2"
@@ -151,7 +126,4 @@ pullGitBranches yw = do
     case eblog of
         Left e -> print e
         Right blog -> writeIORef (ywBlog yw) blog
-    bsReload $ getBook14 yw
-    bsReload $ getBook12 yw
-    bsReload $ getBook11 yw
     loadAuthors >>= writeIORef (ywAuthors yw)

@@ -13,7 +13,6 @@ module Foundation
     ) where
 
 import           Blog                 as X
-import           Book.Routes
 import           Data.IORef           (IORef)
 import           Data.Map             (Map)
 import           Data.Text            (Text)
@@ -39,9 +38,6 @@ data YesodWeb = YesodWeb
     , getAssets :: Static
     , ywBlog    :: IORef Blog
     , ywAuthors :: IORef (Map Text Settings.Author)
-    , getBook12 :: BookSub
-    , getBook11 :: BookSub
-    , getBook14 :: BookSub
     }
 
 -- This is where we define all of the routes in our application. For a full

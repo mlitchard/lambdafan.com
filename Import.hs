@@ -5,7 +5,6 @@ module Import
     , getNewestBlog
     , getBlogList
     , prettyDay
-    , loadBook
     , loadBlog
     , loadAuthors
     , getBlog
@@ -21,7 +20,6 @@ import Data.List (sortBy)
 import Data.Ord (comparing)
 import qualified Data.Map as Map
 import Data.Time
-import qualified Book
 import qualified Filesystem.Path.CurrentOS as F
 import qualified Data.Yaml
 import Settings (blogRoot, Author)
@@ -61,9 +59,6 @@ getNewestBlog = do
 
 prettyDay :: UTCTime -> String
 prettyDay = formatTime defaultTimeLocale "%B %e, %Y"
-
-loadBook :: F.FilePath -> IO Book.Book
-loadBook root = Book.loadBook root
 
 loadBlog :: IO (Either Data.Yaml.ParseException Blog)
 loadBlog = Data.Yaml.decodeFileEither $ F.encodeString $ blogRoot F.</> "posts.yaml"
