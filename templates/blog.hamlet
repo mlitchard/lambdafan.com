@@ -9,13 +9,13 @@ $newline never
                     <img width=80 height=80 itemprop=image src=#{gravatar $ authorEmail author} alt=Gravatar>
                     #{authorName author}
         <p .github-link>
-            <a href="https://github.com/yesodweb/yesodweb.com-content/tree/master/blog/#{either id id $ F.toText $ postFP post}">View source on Github
+            <a href="https://github.com/mlitchard/lambdaweb.com-content/tree/master/blog/#{either id id $ F.toText $ postFP post}">View source on Github
         <div itemprop=description>^{content}
 
     <h1 #comments>Comments
     <div id="disqus_thread">
     <script type="text/javascript">
-        var disqus_shortname = 'yesoddocs';
+        var disqus_shortname = 'lambdafandocs';
         (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
         dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
