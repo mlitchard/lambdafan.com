@@ -31,10 +31,6 @@ $newline never
                     <li.googleplus>
                         <g:plusOne size=small>
                     <li>
-                        <a href=@{BookR BookHomeR}>book
-                    <li>
-                        <a href=@{WikiHomeR}>projects
-                    <li>
                         <a href=@{BlogR}>blog
                     <li>
                         <a href=@{WikiR "Home"}>wiki

@@ -80,14 +80,14 @@ getFeedR = do
             (_, f):_ -> return f
     entries <- mapM go $ take 5 posts
     newsFeed Feed
-        { feedTitle = "Yesod Web Framework Blog"
+        { feedTitle = "Michael Litchard's Personal Blog"
         , feedLinkSelf = FeedR
         , feedLinkHome = RootR
-        , feedDescription = "Development blog for the Yesod Web Framework"
+        , feedDescription = "Personal Blog of Michael Litchard"
         , feedLanguage = "en"
         , feedUpdated = postTime f
         , feedEntries = entries
-        , feedAuthor = "Yesod Web Framework Team"
+        , feedAuthor = "Michael Litchard"
         }
   where
     go (url, p) = do
