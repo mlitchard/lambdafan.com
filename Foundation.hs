@@ -1,8 +1,8 @@
 {-# OPTIONS_GHC -O0 #-}
 module Foundation
-    ( YesodWeb (..)
+    ( LambdaWeb (..)
     , Route (..)
-    , resourcesYesodWeb
+    , resourcesLambdaWeb
     , Handler
     , Widget
     , Form
@@ -32,7 +32,7 @@ import           Yesod.Static
 -- keep settings and values requiring initialization before your application
 -- starts running, such as database connections. Every handler will have
 -- access to the data present here.
-data YesodWeb = YesodWeb
+data LambdaWeb = LambdaWeb
     { settings  :: AppConfig DefaultEnv Extra
     , getStatic :: Static -- ^ Settings for static file serving.
     , getAssets :: Static
@@ -46,26 +46,26 @@ data YesodWeb = YesodWeb
 --
 -- This function does three things:
 --
--- * Creates the route datatype YesodWebRoute. Every valid URL in your
+-- * Creates the route datatype LambdaWebRoute. Every valid URL in your
 --   application can be represented as a value of this type.
 -- * Creates the associated type:
---       type instance Route YesodWeb = YesodWebRoute
--- * Creates the value resourcesYesodWeb which contains information on the
+--       type instance Route LambdaWeb = LambdaWebRoute
+-- * Creates the value resourcesLambdaWeb which contains information on the
 --   resources declared below. This is used in Handler.hs by the call to
 --   mkYesodDispatch
 --
 -- What this function does *not* do is create a YesodSite instance for
--- YesodWeb. Creating that instance requires all of the handler functions
+-- LambdaWeb. Creating that instance requires all of the handler functions
 -- for our application to be in scope. However, the handler functions
--- usually require access to the YesodWebRoute datatype. Therefore, we
+-- usually require access to the LambdaWebRoute datatype. Therefore, we
 -- split these actions into two functions and place them in separate files.
-mkYesodData "YesodWeb" $(parseRoutesFile "config/routes")
+mkYesodData "LambdaWeb" $(parseRoutesFile "config/routes")
 
 type Form x = Html -> MForm Handler (FormResult x, Widget)
 
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.
-instance Yesod YesodWeb where
+instance Yesod LambdaWeb where
     approot = ApprootMaster $ appRoot . settings
 
     makeSessionBackend _ = return Nothing
@@ -80,7 +80,7 @@ instance Yesod YesodWeb where
         -- you to use normal widget features in default-layout.
 
         pc <- widgetToPageContent $ do
-            atomLink FeedR "Yesod Web Framework Blog"
+            atomLink FeedR "Lambdafan's Blog"
             addScriptRemote "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
             $(widgetFile "normalize")
             $(widgetFile "highlight")
@@ -111,11 +111,6 @@ license =
             All content on this site is available under the
             <a href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0 International License#
             .
-            <br>
-            Content outside the book section is available under
-            <a href=https://raw.github.com/yesodweb/yesodweb.com/master/LICENSE>
-                the MIT license
-            as well.
     |]
 
-instance YesodJquery YesodWeb
+instance YesodJquery LambdaWeb

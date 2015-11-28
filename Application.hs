@@ -36,7 +36,7 @@ import           Handler.Wiki
 -- This line actually creates our YesodSite instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see
 -- the comments there for more details.
-mkYesodDispatch "YesodWeb" resourcesYesodWeb
+mkYesodDispatch "LambdaWeb" resourcesLambdaWeb
 
 -- This function allocates resources (such as a database connection pool),
 -- performs initialization and creates a WAI application. This is also the
@@ -73,7 +73,7 @@ getApplication conf = do
             Right b -> return b
     iblog <- newIORef blog
     iauthors <- loadAuthors >>= newIORef
-    let foundation = YesodWeb
+    let foundation = LambdaWeb
             { settings = conf
             , getStatic = s
             , getAssets = assets
@@ -116,7 +116,7 @@ postReloadR = do
     yw <- getYesod
     void $ liftIO $ forkIO $ pullGitBranches yw
 
-pullGitBranches :: YesodWeb -> IO ()
+pullGitBranches :: LambdaWeb -> IO ()
 pullGitBranches yw = do
     forM_ branches $ \(dir, branch) -> do
         let run x y = void $ runProcess x y (Just dir) Nothing Nothing Nothing Nothing >>= waitForProcess

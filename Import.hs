@@ -29,7 +29,7 @@ infixr 5 <>
 (<>) :: Monoid m => m -> m -> m
 (<>) = mappend
 
-getBlogList :: Handler [(Route YesodWeb, Post)]
+getBlogList :: Handler [(Route LambdaWeb, Post)]
 getBlogList = do
     Blog blog <- getBlog
     return $ concatMap go' $ concatMap go $ reverse $ Map.toList blog
@@ -38,7 +38,7 @@ getBlogList = do
     go (a, m) = do
         (b, c) <- reverse $ Map.toList m
         return (a, b, c)
-    go' :: (Year, Month, [(Slug, Post)]) -> [(Route YesodWeb, Post)]
+    go' :: (Year, Month, [(Slug, Post)]) -> [(Route LambdaWeb, Post)]
     go' (y, m, ps) = do
         (s, p) <- ps
         return (BlogPostR y m s, p)
@@ -48,7 +48,7 @@ getBlog = do
     now <- liftIO getCurrentTime
     (ywBlog <$> getYesod) >>= fmap (filterBlog now) . liftIO . readIORef
 
-getNewestBlog :: Handler (Route YesodWeb, Post)
+getNewestBlog :: Handler (Route LambdaWeb, Post)
 getNewestBlog = do
     Blog blog <- getBlog
     maybe notFound return $ listToMaybe $ do
