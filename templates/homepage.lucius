@@ -84,7 +84,7 @@ div.headergroup {
         height: 150px;
         margin-left: 5px;
         div.logo-image {
-          background: url(@{StaticR logo_hermes_png}) no-repeat left center;
+          background: url(@{StaticR hatman_png}) no-repeat left center;
           width: 100%;
           height: 130px;
         }
