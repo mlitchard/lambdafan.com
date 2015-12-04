@@ -6,7 +6,6 @@
 
 / RootR GET
 /wiki WikiHomeR GET
-/wiki/#Text WikiR GET
 /page/*Texts PageR GET
 
 /feed FeedR GET
